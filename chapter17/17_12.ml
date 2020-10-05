@@ -1,4 +1,4 @@
-#use "../chapter8/8_7.ml"
+#use "../chapter9/9_10.ml" (*ekikan_t, global_ekikan_list*)
 #use "../chapter17/17_10.ml"
 (*目的: ekikan_tree_t型の木とekikan_t型を受け取り，その情報を挿入したekikan_tree_t型の木を返す*)
 (*insert_ekikan : ekikan_tree_t -> ekikan_t -> ekikan_tree_t *)
