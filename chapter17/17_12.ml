@@ -1,14 +1,24 @@
 #use "../chapter9/9_10.ml" (*ekikan_t, global_ekikan_list*)
 #use "../chapter17/17_10.ml"
+(*目的: ekikan_tree_t型，kiten, shuten, kyoriを受け取り，挿入した上でekikan_tree_t型を返す*)
+(* insert : ekikan_tree_t -> string -> string -> float -> ekikan_tree *)
+let rec insert tree kiten shuten kyori =
+  match tree with
+  | Empty -> Node (Empty, kiten, [(shuten, kyori)], Empty)
+  | Node (t1, eki, lst, t2) ->
+      if kiten < eki
+      then Node (insert t1 kiten shuten kyori, eki, lst, t2)
+      else if kiten > eki
+      then Node (t1, eki, lst, insert t2 kiten shuten kyori)
+      else Node (t1, eki, (shuten,kyori)::lst, t2)
+
+
 (*目的: ekikan_tree_t型の木とekikan_t型を受け取り，その情報を挿入したekikan_tree_t型の木を返す*)
 (*insert_ekikan : ekikan_tree_t -> ekikan_t -> ekikan_tree_t *)
 let insert_ekikan tree ekikan =
-  match tree with
-  | Empty -> Empty
-  | Node (t1, eki, lst, t2) -> Empty
-
-
-
+  match ekikan with
+  | {kiten=k; shuten=s; keiyu=y; kyori=r} ->
+      insert (insert tree k s r) s k r
 
 
 (* 駅間の例 *) 
